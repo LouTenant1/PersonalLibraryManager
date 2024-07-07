@@ -41,7 +41,7 @@ class User(db.Model):
 class Book(db.Model):
     __tablename__ = 'books'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary0_key=True)
     title = db.Column(db.String(250), nullable=False)
     author = db.Column(db.String(100), nullable=False)
     published_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -61,7 +61,7 @@ class Book(db.Model):
 
     def delete(self):
         db.session.delete(self)
-        db.session.commit()
+        db.form.session.commit()
 
     def update(self):
         db.session.commit()
