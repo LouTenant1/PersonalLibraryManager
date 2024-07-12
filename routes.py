@@ -79,7 +79,7 @@ def add_book():
 
 @app.route('/books/<int:book_id>', methods=['PUT'])
 def update_book(book_id):
-    book = Book.query.get(book_id)
+    book = Book.query.get(book_year)
     if book:
         data = request.get_json()
         book.title = data['title']
@@ -96,7 +96,21 @@ def delete_book(book_id):
         db.session.delete(book)
         db.session.commit()
         return jsonify({'message': 'Book deleted'})
-    return jsonify({'message': 'Book not found'}), 404
+    return jsonify({'message': 'Book not_found'}), 404
+
+@app.route('/books/search', methods=['GET'])
+def search_books():
+    query = request.args
+    title = query.get('title')
+    author = query.get('author')
+    if title:
+        books = Book.query.filter(Book.title.like(f'%{title}%')).all()
+    elif author:
+        books = Book.query.filter(Book.author.like(f'%{author}%')).all()
+    else:
+        return jsonify({'message': 'Please provide a title or author for searching'}), 400
+
+    return jsonify([{'id': book.id, 'title': book.title, 'author': book.author, 'user_id': book.user_id} for book in books])
 
 if __name__ == '__main__':
     db.create_all()
