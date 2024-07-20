@@ -8,8 +8,22 @@
 </head>
 <body>
     <div id="app">
+        <button id="newBookBtn">Add New Book</button>
     </div>
     <script src="env.js"></script>
     <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const newBookBtn = document.getElementById('newBookBtn');
+            
+            newBookBtn.addEventListener('click', function() {
+                addNewBook();
+            });
+
+            function addNewBook() {
+                alert('Add new book functionality to be implemented');
+            }
+        });
+    </script>
 </body>
 </html>
