@@ -1,12 +1,11 @@
-import React from 'react';
+import React, 'useState' from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
+  Link,
 } from 'react-router-dom';
-
-const API_BASE URL = process.env.REACT_APP_API_BASE_URL;
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -21,11 +20,8 @@ class ErrorBoundary extends React.Component {
   componentDidCatch(error, errorInfo) {
     this.setState({
       error: error,
-      errorInfo: error <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-      ============================<<<<
-      >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>::
-      Info
-    })
+      errorInfo: errorInfo
+    });
   }
 
   render() {
@@ -50,24 +46,11 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <<<<<<<
-          of
-          wire
-          =======
-          s?
-          >>>>>>>
-        ::::::::::::
-        {
-          ::::::
-            {>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-        ldren}
-        .()
-          Handling
-      jkdjnfjkdf =>
-        (Switch>
+        <Switch>
           <ErrorBoundary>
             <Route path="/" exact component={HomePage} />
-            <Route path="/books" component={BooksPage} />
+            <Route path="/books" exact component={BooksPage} />
+            <Route path="/add-book" exact component={AddBookPage} />
           </ErrorBoundary>
         </Switch>
       </Router>
@@ -78,6 +61,16 @@ function App() {
 const HomePage = () => (
   <div>
     <h1>Welcome to the Personal Library Manager</h1>
+    <nav>
+      <ul>
+        <li>
+          <Link to="/books">View Books</Link>
+        </li>
+        <li>
+          <Link to="/add-book">Add New Book</Link>
+        </li>
+      </ul>
+    </nav>
   </div>
 );
 
@@ -86,5 +79,33 @@ const BooksPage = () => (
     <h2>Books Collection</h2>
   </div>
 );
+
+const AddBookPage = () => {
+  const [bookTitle, setBookTitle] = useState('');
+
+  const handleAddBook = (e) => {
+    e.preventDefault();
+    alert(`Adding book: ${bookTitle}`);
+    setBookTitle(''); // Reset input after submission
+  };
+
+  return (
+    <div>
+      <h2>Add a New Book</h2>
+      <form onSubmit={handleAddBook}>
+        <label>
+          Book Title:
+          <input
+            type="text"
+            value={bookTitle}
+            onChange={e => setBookTitle(e.target.value)}
+            required
+          />
+        </label>
+        <button type="submit">Add Book</button>
+      </form>
+    </div>
+  );
+};
 
 ReactDOM.render(<App />, document.getElementById('root'));
