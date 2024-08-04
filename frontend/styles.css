@@ -5,14 +5,16 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
     line-height: 1.6;
     padding: 20px 40px;
 }
 
 h1, h2, h3, h4, h5, h6 {
     margin-bottom: 20px;
+    color: #333;
 }
 
 p {
@@ -24,6 +26,9 @@ p {
     margin: auto;
     overflow: hidden;
     padding: 0 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 .row {
@@ -41,12 +46,15 @@ form {
     background: #ffffff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eee;
 }
 
 form label {
     display: block;
     margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
 }
 
 form input[type="text"],
@@ -58,20 +66,30 @@ form select {
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    transition: border-color 0.3s;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="date"]:focus,
+form select:focus {
+    border-color: #005a87;
+    outline: none;
 }
 
 form button[type="submit"] {
     cursor: pointer;
-    background-color: #005a87;
+    background-color: #007bff;
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     text-transform: uppercase;
+    transition: background-color 0.3s;
 }
 
 form button[type="submit"]:hover {
-    background-color: #00415a;
+    background-color: #0056b3;
 }
 
 ul {
@@ -81,9 +99,14 @@ ul {
 
 ul li {
     background: #ffffff;
-    border-bottom: 1px solid #dddddd;
+    border-bottom: 1px solid #eeeeee;
     line-height: 40px;
     padding-left: 20px;
+    transition: background-color 0.3s;
+}
+
+ul li:hover {
+    background-color: #f9f9f9;
 }
 
 @media screen and (max-width: 767px) {
@@ -97,6 +120,7 @@ ul li {
     
     .container {
         padding: 0;
+        border-radius: 0;
     }
     
     body {
